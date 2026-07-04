@@ -578,6 +578,10 @@ pre{ background: rgba(255,255,255,0.02); padding:14px; border-radius:8px; overfl
     .projects-grid{ grid-template-columns: 1fr }
     .engineering-grid{ grid-template-columns:1fr }
     .feature-project-grid,
+    .engineering-feature-grid{ grid-template-columns:1fr; }
+    .hero-metrics{ grid-template-columns:1fr; }
+    h1{ font-size:2rem }
+}
 
 /* ===========================
    Final polish system
@@ -792,10 +796,6 @@ pre code{
         transition:none !important;
         transform:none !important;
     }
-}
-    .engineering-feature-grid{ grid-template-columns:1fr; }
-    .hero-metrics{ grid-template-columns:1fr; }
-    h1{ font-size:2rem }
 }
 
 /* ===========================
@@ -1617,6 +1617,124 @@ pre code{
     .dws-goals-grid,
     .dws-module-grid,
     .dws-lessons-grid{ grid-template-columns:1fr; }
+}
+
+/* ===========================
+   Responsive safety net
+=========================== */
+
+.container{
+    width:min(calc(100% - clamp(20px, 6vw, 72px)), var(--max-width));
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.hero,
+.page-hero,
+.eng-page-hero{
+    padding-top:clamp(52px, 9vw, 86px);
+    padding-bottom:clamp(28px, 6vw, 44px);
+}
+
+.hero-ctas,
+.contact-cta-actions,
+.topbar-icons,
+.hero-answer-strip{
+    flex-wrap:wrap;
+}
+
+.hero-portrait{
+    width:min(420px, 100%);
+    height:auto;
+    aspect-ratio:1 / 1;
+}
+
+@media (max-width:900px){
+    .topbar-inner{
+        flex-wrap:wrap;
+        row-gap:10px;
+    }
+
+    .nav-links{
+        order:3;
+        width:100%;
+        margin-left:0;
+        flex-wrap:wrap;
+        gap:10px 14px;
+    }
+
+    .hero-grid,
+    .page-hero-grid,
+    .case-study-grid,
+    .eng-layout,
+    .dws-layout,
+    .contact-layout,
+    .philosophy-grid,
+    .focus-grid,
+    .eng-card-grid,
+    .eng-link-grid,
+    .dws-goals-grid,
+    .dws-lessons-grid{
+        grid-template-columns:1fr;
+    }
+
+    .projects-grid,
+    .engineering-grid,
+    .feature-project-grid,
+    .engineering-feature-grid,
+    .dws-banner-grid,
+    .dws-module-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+
+    .eng-side,
+    .case-study-sidebar,
+    .dws-toc-wrap{
+        position:static;
+    }
+}
+
+@media (max-width:640px){
+    section{
+        padding:clamp(40px, 10vw, 64px) 0;
+    }
+
+    .topbar-inner{
+        padding:12px 0;
+    }
+
+    .topbar-icons{
+        gap:10px;
+    }
+
+    .projects-grid,
+    .engineering-grid,
+    .feature-project-grid,
+    .engineering-feature-grid,
+    .dws-banner-grid,
+    .dws-module-grid,
+    .hero-metrics,
+    .hero-answer-strip{
+        grid-template-columns:1fr;
+    }
+
+    .hero-name{
+        font-size:clamp(1.9rem, 9vw, 2.6rem);
+    }
+
+    .eng-section,
+    .case-study-section,
+    .contact-card,
+    .philosophy-card,
+    .hero-panel,
+    .sidebar-panel,
+    .eng-side-panel,
+    .dws-toc,
+    .dws-hero-banner{
+        padding:18px;
+    }
 }
 
 /* Footer */
