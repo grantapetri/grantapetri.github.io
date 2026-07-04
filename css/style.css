@@ -574,7 +574,7 @@ pre{ background: rgba(255,255,255,0.02); padding:14px; border-radius:8px; overfl
 }
 
 @media (max-width:640px){
-    .nav-links{ display:none }
+    .nav-links{ display:flex }
     .projects-grid{ grid-template-columns: 1fr }
     .engineering-grid{ grid-template-columns:1fr }
     .feature-project-grid,
@@ -1705,8 +1705,40 @@ body{
         padding:12px 0;
     }
 
+    .nav-links{
+        width:100%;
+        margin-left:0;
+        gap:8px 12px;
+    }
+
+    .nav-links li{
+        flex:1 1 calc(50% - 12px);
+    }
+
+    .topbar-icons{
+        margin-left:0;
+    }
+
     .topbar-icons{
         gap:10px;
+    }
+
+    .featured-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .hero-ctas{
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0,1fr));
+        gap:10px;
+        width:100%;
+    }
+
+    .hero-ctas .btn{
+        width:100%;
+        text-align:center;
     }
 
     .projects-grid,
@@ -1734,6 +1766,12 @@ body{
     .dws-toc,
     .dws-hero-banner{
         padding:18px;
+    }
+}
+
+@media (max-width:460px){
+    .hero-ctas{
+        grid-template-columns:1fr;
     }
 }
 
