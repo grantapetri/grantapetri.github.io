@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250">
+  <rect width="800" height="250" fill="#0F0F11"/>
+  <g fill="#CFC6FF" font-family="Inter, sans-serif">
+    <text x="28" y="40" font-size="20">Weapon Sway Demo</text>
+    <text x="28" y="70" font-size="13" fill="#9e95a9">Placeholder visual for weapon sway GIF/video</text>
+  </g>
+  <g stroke="#7d6ef5" stroke-width="3" stroke-linecap="round">
+    <path d="M80 180 C200 120, 300 220, 420 160 S640 140, 720 180" fill="none" opacity="0.9"/>
+  </g>
+</svg>

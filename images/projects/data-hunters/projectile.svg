@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+  <rect width="800" height="200" fill="#0F0F11"/>
+  <g fill="#CFC6FF" font-family="Inter, sans-serif">
+    <text x="28" y="40" font-size="20">Projectile Trajectory</text>
+    <text x="28" y="70" font-size="13" fill="#9e95a9">Placeholder visual for projectile visualization</text>
+  </g>
+  <g stroke="#4fb0ff" stroke-width="2">
+    <path d="M20 160 Q200 80 380 140 T740 130" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

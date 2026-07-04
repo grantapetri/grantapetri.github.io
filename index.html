@@ -1,75 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="css/style.css">
   <meta charset="UTF-8">
-  <title>Grant Petri - Game Developer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #0f0f0f;
-      color: #ffffff;
-    }
-    header {
-      padding: 60px;
-      text-align: center;
-      background: #1a1a1a;
-    }
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px;
-    }
-    .project {
-      background: #1f1f1f;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 10px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Grant Petri — Gameplay & Systems Programmer</title>
 </head>
 
-<body>
+<body> 
 
-<header>
-  <h1>Grant Petri</h1>
-  <p>Gameplay / Systems Programmer</p>
-</header>
-
-<section>
-
-  <section>
-    <h2>About Me</h2>
-    <p>
-      I am a gameplay and systems programmer focused on building multiplayer games
-      with strong technical foundations, including networking, procedural systems,
-      and gameplay architecture. I specialize in Roblox Studio and Unity, with experience
-      designing complex interactive systems such as FPS frameworks, AI systems, and
-      procedural generation tools.
-    </p>
-  </section>
-  
-  <section>
-    <h2>Technical Focus</h2>
-      <ul>
-        <li>Server-authoritative multiplayer FPS systems</li>
-        <li>Networked physics simulation in peer-peer connection</li>
-        <li>Procedural weapon simulation using spring-based physics</li>
-        <li>Custom projectile system with penetration and validation</li>
-        <li>Modular tool architecture for scalable gameplay systems</li>
-        <li>AI-driven PvPvE gameplay systems</li>
+  <nav class="topbar">
+    <div class="container topbar-inner">
+      <a class="logo" href="index.html">GP</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects/data-hunters.html">Projects</a></li>
+        <li><a href="#">Systems</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
-  </section>
-  
-  <h2>Featured Project</h2>
-  
-  <div class="project">
-    <h3>Data Hunters</h3>
-    <p>PvPvE horror extraction shooter with server-authoritative FPS systems.</p>
-    <a href="data-hunters.html">View Project →</a>
-  </div>
+      <div class="topbar-icons">
+        <a href="https://github.com/grantapetri" aria-label="GitHub"><img class="icon" src="images/icons/github.svg" alt="GitHub"></a>
+        <a href="#" aria-label="LinkedIn"><img class="icon" src="images/icons/linkedin.svg" alt="LinkedIn"></a>
+        <a href="#" aria-label="Email"><img class="icon" src="images/icons/mail.svg" alt="Email"></a>
+      </div>
+    </div>
+  </nav>
 
-</section>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <h1 class="hero-name">Grant Petri</h1>
+        <p class="hero-role">Gameplay & Systems Programmer</p>
+        <div class="accent-line"></div>
+        <p class="hero-blurb">I build multiplayer systems, procedural gameplay, and immersive player experiences.</p>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="projects/data-hunters.html">View Projects</a>
+          <a class="btn btn-ghost" href="#">Resume</a>
+          <a class="btn btn-outline" href="https://github.com/grantapetri">GitHub</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-portrait">
+          <img src="images/hero/profile.jpg" alt="Grant Petri portrait">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="featured container" id="projects">
+    <div class="featured-header">
+      <div>
+        <div class="kicker">Featured Projects</div>
+        <h2>Things I've Built</h2>
+      </div>
+      <a class="view-all" href="projects/data-hunters.html">View all projects →</a>
+    </div>
+
+    <div class="projects-grid">
+      <article class="card">
+        <a href="projects/data-hunters.html" class="card-media" style="background-image: linear-gradient(rgba(5,5,5,0.45), rgba(5,5,5,0.45)), url('images/hero/profile.jpg')">
+        </a>
+        <div class="card-body">
+          <h3 class="card-title">Data Hunters</h3>
+          <p class="card-desc">PvPvE horror extraction shooter built in Roblox with server-authoritative gameplay, AI, and advanced weapon systems.</p>
+          <div class="card-tags">
+            <span>Roblox Studio</span>
+            <span>Multiplayer</span>
+            <span>AI</span>
+            <span>Networking</span>
+          </div>
+        </div>
+        <a class="card-arrow" href="projects/data-hunters.html">→</a>
+      </article>
+
+      <article class="card">
+        <a href="projects/site-23.html" class="card-media" style="background-image: linear-gradient(rgba(5,5,5,0.45), rgba(5,5,5,0.45)), url('images/hero/site-23.png')">
+        </a>
+        <div class="card-body">
+          <h3 class="card-title">Site 23</h3>
+          <p class="card-desc">Procedurally generated horror experience built in Roblox. Focused on atmosphere, exploration, and emergent gameplay.</p>
+          <div class="card-tags">
+            <span>Roblox Studio</span>
+            <span>Procedural Gen</span>
+            <span>Horror</span>
+          </div>
+        </div>
+        <a class="card-arrow" href="projects/site-23.html">→</a>
+      </article>
+
+      <article class="card">
+        <a href="projects/your-shadow.html" class="card-media" style="background-image: linear-gradient(rgba(5,5,5,0.45), rgba(5,5,5,0.45)), url('images/hero/your-shadow.png')">
+        </a>
+        <div class="card-body">
+          <h3 class="card-title">Your Shadow</h3>
+          <p class="card-desc">Psychological horror game exploring narrative, pacing, and immersive environmental design.</p>
+          <div class="card-tags">
+            <span>Roblox Studio</span>
+            <span>Narrative</span>
+            <span>Atmosphere</span>
+          </div>
+        </div>
+        <a class="card-arrow" href="projects/your-shadow.html">→</a>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">© Grant Petri</div>
+  </footer>
 
 </body>
 </html>

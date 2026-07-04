@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#0b0b0d"/>
+      <stop offset="1" stop-color="#201624"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g)"/>
+  <g fill="#49454f" font-family="Space Grotesk, sans-serif">
+    <text x="60" y="140" font-size="46">Data Hunters</text>
+    <text x="60" y="200" font-size="22" fill="#bdb6c7">PvPvE horror extraction shooter — thumbnail placeholder</text>
+  </g>
+</svg>
