@@ -59,6 +59,24 @@
     After extraction or death, players return to the lobby where rewards are converted into persistent currency used to upgrade weapons and equipment, reinforcing long-term progression.
   </p>
 
+  <h2>Technical Deep Dive: Weapon System Architecture</h2>
+
+  <p>
+    The weapon system is built around a modular, data-driven architecture separating weapon configuration, runtime state, and gameplay logic. Each weapon is defined through a static configuration table containing stats such as fire rate, projectile type, reload behavior, animation references, and spring simulation parameters.
+  </p>
+  
+  <p>
+    At runtime, each weapon maintains a separate state object managed by the server. This includes ammunition, chamber state, and other dynamic gameplay variables. Client actions are predicted locally and validated on the server to ensure consistency and prevent invalid state changes.
+  </p>
+  
+  <p>
+    Weapon feel and responsiveness are driven by a procedural spring-based viewmodel system. Instead of relying on predefined animations, multiple independent spring simulations control positional and rotational offsets such as recoil, sway, aiming transitions, and camera movement response. These effects are composed each frame to produce the final weapon transform.
+  </p>
+  
+  <p>
+    This architecture allows weapons to be highly configurable and extensible, enabling new behaviors to be added by modifying configuration data rather than rewriting core logic.
+  </p>
+
   <h2>Technical Focus</h2>
   <ul>
     <li>Server-authoritative FPS architecture</li>
