@@ -77,6 +77,24 @@
     This architecture allows weapons to be highly configurable and extensible, enabling new behaviors to be added by modifying configuration data rather than rewriting core logic.
   </p>
 
+  <h2>Engineering Challenges & Solutions</h2>
+
+  <p>
+    One of the major challenges during development was maintaining frame-rate independent behavior across all clients. An early implementation caused weapon sway intensity to vary depending on frame rate, leading to inconsistent gameplay experiences and unfair advantages. A temporary fix involved limiting updates to a fixed timestep, but this introduced issues for lower-FPS clients.
+  </p>
+  
+  <p>
+    The system was later redesigned to fully incorporate delta-time scaling, ensuring all motion-based calculations remain consistent regardless of frame rate differences between clients.
+  </p>
+  
+  <p>
+    Another significant challenge was determining the correct order of transformation composition for the weapon viewmodel. Because the final weapon position depends on multiple layered systems (camera offset, spring simulations, recoil impulses, and aiming offsets), incorrect ordering resulted in visual inconsistencies and unstable behavior. The system required multiple architectural revisions before settling on a stable composition pipeline.
+  </p>
+  
+  <p>
+    These challenges led to several full rewrites of the weapon architecture, ultimately resulting in a more modular and functional design that separates simulation, configuration, and rendering concerns.
+  </p>
+
   <h2>Technical Focus</h2>
   <ul>
     <li>Server-authoritative FPS architecture</li>
