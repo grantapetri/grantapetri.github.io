@@ -4,6 +4,10 @@
   const path = window.location.pathname.replace(/\\/g, "/");
   const isEngineeringPage = /\/engineering\//.test(path) && !/\/engineering\/index\.html$/.test(path);
   const isProjectPage = /\/projects\//.test(path) && !/\/projects\/index\.html$/.test(path);
+  const isNestedPage = isEngineeringPage || isProjectPage;
+  const rootPrefix = isNestedPage ? "../" : "";
+
+  let videoManifestPromise;
 
   const graph = {
     projects: {
@@ -131,6 +135,121 @@
 
     section.appendChild(h2);
     return section;
+  };
+
+  const resolveAssetPath = (assetPath) => {
+    if (!assetPath) return "";
+    if (/^(?:https?:)?\/\//.test(assetPath) || assetPath.startsWith("/")) {
+      return assetPath;
+    }
+
+    return rootPrefix + assetPath;
+  };
+
+  const loadVideoManifest = () => {
+    if (videoManifestPromise) return videoManifestPromise;
+
+    videoManifestPromise = new Promise((resolve) => {
+      if (window.PORTFOLIO_VIDEO_MANIFEST) {
+        resolve(window.PORTFOLIO_VIDEO_MANIFEST);
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = `${rootPrefix}videos/manifest.js`;
+      script.async = true;
+      script.onload = () => resolve(window.PORTFOLIO_VIDEO_MANIFEST || {});
+      script.onerror = () => resolve({});
+      document.head.appendChild(script);
+    });
+
+    return videoManifestPromise;
+  };
+
+  const initShowcaseVideo = async () => {
+    if (!isEngineeringPage && !isProjectPage) return;
+
+    const stack = document.querySelector(".eng-content") || document.querySelector(".case-study-stack");
+    if (!stack) return;
+    if (stack.querySelector("[data-generated-showcase-video='true']")) return;
+
+    const pageKey = (path.split("/").pop() || "").replace(/\.html$/i, "");
+    const manifest = await loadVideoManifest();
+    const entries = isProjectPage ? manifest.projects : manifest.engineering;
+    const entry = entries && entries[pageKey];
+
+    if (!entry) return;
+
+    const sectionClass = stack.classList.contains("eng-content") ? "eng-section" : "case-study-section";
+
+    const buildVideoSection = (videoEntry, dataAttr) => {
+      const section = makeSection(videoEntry.title || "Showcase Video", sectionClass);
+      section.setAttribute(dataAttr, "true");
+
+      const shell = document.createElement("div");
+      shell.className = "showcase-video-shell";
+
+      const video = document.createElement("video");
+      video.className = "showcase-video-player";
+      video.controls = true;
+      video.preload = "metadata";
+      video.playsInline = true;
+
+      if (videoEntry.poster) {
+        video.poster = resolveAssetPath(videoEntry.poster);
+      }
+
+      videoEntry.sources.forEach((item) => {
+        if (!item || !item.src) return;
+        const source = document.createElement("source");
+        source.src = resolveAssetPath(item.src);
+        if (item.type) source.type = item.type;
+        video.appendChild(source);
+      });
+
+      shell.appendChild(video);
+
+      if (videoEntry.description || videoEntry.caption) {
+        const meta = document.createElement("div");
+        meta.className = "showcase-video-meta";
+        if (videoEntry.description) {
+          const p = document.createElement("p");
+          p.textContent = videoEntry.description;
+          meta.appendChild(p);
+        }
+        if (videoEntry.caption) {
+          const span = document.createElement("span");
+          span.textContent = videoEntry.caption;
+          meta.appendChild(span);
+        }
+        shell.appendChild(meta);
+      }
+
+      section.appendChild(shell);
+      return section;
+    };
+
+    const firstSection = stack.querySelector(":scope > section");
+    let insertAfter = firstSection || null;
+
+    const insertSection = (section) => {
+      if (insertAfter) {
+        insertAfter.insertAdjacentElement("afterend", section);
+        insertAfter = section;
+      } else {
+        stack.prepend(section);
+        insertAfter = section;
+      }
+    };
+
+    if (entry.enabled && Array.isArray(entry.sources) && entry.sources.length) {
+      insertSection(buildVideoSection(entry, "data-generated-showcase-video"));
+    }
+
+    const tech = entry.technical;
+    if (tech && tech.enabled && Array.isArray(tech.sources) && tech.sources.length) {
+      insertSection(buildVideoSection(tech, "data-generated-technical-video"));
+    }
   };
 
   const initNavState = () => {
@@ -391,13 +510,18 @@
     });
   };
 
+  const boot = async () => {
+    ensureEngineeringEndSections();
+    ensureProjectHighlights();
+    buildArchitectureDiagrams();
+    await initShowcaseVideo();
+    initTimeline();
+    initToc();
+    highlightCode();
+    initReveal();
+  };
+
   document.documentElement.classList.add("js-ready");
   initNavState();
-  ensureEngineeringEndSections();
-  ensureProjectHighlights();
-  buildArchitectureDiagrams();
-  initTimeline();
-  initToc();
-  highlightCode();
-  initReveal();
+  boot();
 })();
