@@ -124,7 +124,7 @@ window.PORTFOLIO_VIDEO_MANIFEST = {
         enabled: false,
         title: "Dynamic Weapon Sway — Technical Showcase",
         description: "A walkthrough of the spring simulation math, config values, and frame-independent update loop.",
-        poster: "images/hero/profile.jpg",
+        poster: "images/hero/dynamic-weapon-sway.jpg",
         sources: [{ src: "videos/showcase/dynamic-weapon-sway-technical.mp4", type: "video/mp4" }]
       }
     },
